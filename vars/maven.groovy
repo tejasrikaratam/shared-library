@@ -1,5 +1,8 @@
-def steps
-  Utilities(steps) {this.steps = steps}
-  def mvn(args) {
-    steps.sh "${steps.tool 'Maven-3.6.3'}/bin/mvn -o ${args}"
-  }
+def call(){
+stage('SonarQube Analysis'){
+  def mavenHome = tool name: "Maven-3.6.3",type: "maven"
+  withSonarQubeEnv('sonar-6') {
+  sh "${mavenHome}/bin/mvn sonar:sonar"
+ }
+}
+}
