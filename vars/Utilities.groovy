@@ -1,8 +1,5 @@
-package org.foo
-class Utilities implements Serializable {
-  def steps
-  Utilities(steps) {this.steps = steps}
-  def mvn(args) {
-    steps.sh "${steps.tool 'Maven-3.6.3'}/bin/mvn -o ${args}"
-  }
-}
+
+def mavenHome = tool name:"Maven-3.6.3",type: "maven"
+         
+         def mavenCMD= "${mavenHome}/bin/mvn"
+         sh "${mavenCMD} clean package"
